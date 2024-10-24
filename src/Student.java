@@ -1,77 +1,111 @@
-// This class represents a Student with their ID, name, grade, and fee information.
+
+/**
+ * Created by Rakshith on 4/3/2017.
+ * This class is responsible for keeping the
+ * track of students fees, name ,grade & fees
+ * paid.
+ *
+ */
 public class Student {
-    // Unique ID of the student.
+
     private int id;
-
-    // Name of the student.
     private String name;
-
-    // Current grade of the student.
     private int grade;
+    private int feesPaid;
+    private int feesTotal;
 
-    // Total amount of fees that the student has paid.
-    private int feePaid;
+    /**
+     * To create a new student by initializing.
+     * Fees for every student is $30,000.
+     * Fees paid initially is 0.
+     * @param id id for the student: unique.
+     * @param name name of the student.
+     * @param grade grade of the student.
+     */
+    public Student(int id, String name,int grade){
+        this.feesPaid=0;
+        this.feesTotal=30000;
+        this.id=id;
+        this.name=name;
+        this.grade=grade;
 
-    // Total fees required to be paid by the student.
-    private int feeTotal;
-
-    // Constructor to initialize a new Student object with an ID, name, and grade.
-    // Initially, feePaid is set to 0, and feeTotal is set to 10000.
-    public Student(int id, String name, int grade) {
-        this.id = id;             // Set the student's ID.
-        this.name = name;         // Set the student's name.
-        this.grade = grade;       // Set the student's grade.
-        this.feePaid = 0;         // Initialize feePaid to 0.
-        this.feeTotal = 10000;    // Set the default feeTotal to 10000.
     }
 
-    // Getter method to get the student's ID.
+    //Not going to alter student's name, student's id.
+
+
+    /**
+     * Used to update the student's grade.
+     * @param grade new grade of the student.
+     */
+    public void setGrade(int grade){
+        this.grade=grade;
+    }
+
+
+    /**
+     * Keep adding the fees to feesPaid Field.
+     * Add the fees to the fees paid.
+     * The school is going receive the funds.
+     *
+     * @param fees the fees that the student pays.
+     */
+    public void payFees(int fees){
+        feesPaid+=fees;
+        School.updateTotalMoneyEarned(feesPaid);
+    }
+
+    /**
+     *
+     * @return id of the student.
+     */
     public int getId() {
         return id;
     }
 
-    // Setter method to update the student's ID.
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    // Getter method to get the student's name.
+    /**
+     *
+     * @return name of the student.
+     */
     public String getName() {
         return name;
     }
 
-    // Setter method to update the student's name.
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Getter method to get the student's grade.
+    /**
+     *
+     * @return the grade of the student.
+     */
     public int getGrade() {
         return grade;
     }
 
-    // Setter method to update the student's grade.
-    public void setGrade(int grade) {
-        this.grade = grade;
+    /**
+     *
+     * @return fees paid by the student.
+     */
+    public int getFeesPaid() {
+        return feesPaid;
     }
 
-    // Getter method to get the total fees paid by the student.
-    public int getFeePaid() {
-        return feePaid;
+    /**
+     *
+     * @return the total fees of the student.
+     */
+    public int getFeesTotal() {
+        return feesTotal;
     }
 
-    // Setter method to update the amount of fees paid by the student.
-    public void setFeePaid(int feePaid) {
-        this.feePaid = feePaid;
+    /**
+     *
+     * @return the remaining fees.
+     */
+    public int getRemainingFees(){
+        return feesTotal-feesPaid;
     }
 
-    // Getter method to get the total fee amount required for the student.
-    public int getFeeTotal() {
-        return feeTotal;
-    }
-
-    // Setter method to update the total fee amount required for the student.
-    public void setFeeTotal(int feeTotal) {
-        this.feeTotal = feeTotal;
+    @Override
+    public String toString() {
+        return "Student's name :"+name+
+                " Total fees paid so far $"+ feesPaid;
     }
 }
